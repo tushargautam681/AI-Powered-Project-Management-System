@@ -1,0 +1,1199 @@
+PROJECT TITLE
+AI-Powered Project Management System
+with Automatic Task Prioritization
+SYNOPSIS OF THE PROJECT
+Submitted by
+Tushar Gautam
+Roll No: 23030746
+Uma Shankar
+Roll No: 23030652
+Likha Gummiku
+Roll No: 23030846
+Dipti Saini
+Roll No: 23030565
+In Partial Fulfillment of the Requirements for
+the Degree of
+BACHELOR OF TECHNOLOGY
+VII SEM
+DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING
+QUANTUM SCHOOL OF TECHNOLOGY
+Engineering Project–I
+CSE–FSD
+QUANTUM UNIVERSITY
+ROORKEE–247167
+Session: 2026–27
+2
+INDEX
+Contents
+Abstract
+1
+Introduction
+2
+Problem Analysis / Literature Review
+8
+Proposed Methodology
+17
+Objectives
+27
+References
+29
+Engineering Project–I
+CSE–FSD
+Abstract
+Software development projects involve a large number of tasks that must be planned, assigned,
+monitored, and completed within limited time and resource constraints. As project size in-
+creases, project teams frequently face diﬀiculty in determining which task should receive at-
+tention first. Conventional project management systems generally provide features for task cre-
+ation, assignment, status tracking, deadlines, and workflow visualization; however, the actual
+prioritization of tasks often remains dependent on manual judgement. Manual prioritization can
+become diﬀicult when several tasks have different deadlines, business impacts, dependencies,
+complexity levels, and workload implications. This creates a need for a project management
+system capable of providing systematic and explainable support for task-level decision making.
+The proposed project, AI-Powered Project Management System with Automatic Task Pri-
+oritization, aims to develop a web-based project management platform that integrates project
+planning, task management, Kanban-based workflow visualization, automatic task prioritiza-
+tion, AI-assisted task analysis, risk identification, and workload analysis within a unified system.
+The proposed system will allow users to create projects, manage team members, define tasks,
+assign responsibilities, specify deadlines, estimate effort, identify dependencies, and monitor
+project progress through a visual Kanban interface.
+The central component of the proposed system is an Automatic Task Prioritization Engine.
+Instead of depending only on manually selected priority labels such as Low, Medium, or High,
+the proposed engine will analyse multiple task-related factors. These factors include deadline
+urgency, business impact, dependency impact, team workload, and task complexity. The fac-
+tors will be normalized and combined using a weighted scoring model to generate a measurable
+priority score. The system will also provide a human-readable explanation showing why a par-
+ticular task received its priority, thereby improving transparency and interpretability.
+An AI-assisted analysis layer will complement the deterministic priority engine. It will anal-
+yse task descriptions and project context to suggest task complexity, estimated effort, required
+skills, possible risks, dependencies, and smaller actionable subtasks. The AI layer will act as
+a decision-support component rather than replacing the deterministic prioritization mechanism.
+This separation is intended to make the system easier to evaluate and suitable for academic
+demonstration.
+The proposed system will follow an iterative Agile development methodology. The core project
+management and Kanban functionality will be developed first, followed by the prioritization en-
+gine, AI-assisted analysis, risk detection, workload analysis, and testing. The expected outcome
+is a functional and lightweight project management prototype that can help software teams un-
+derstand not only the current status of their tasks but also which tasks should receive attention
+first and the factors responsible for that recommendation.
+1
+Engineering Project–I
+CSE–FSD
+Introduction
+2.1 Background
+Project management is an essential activity in software development because the successful com-
+pletion of a software product depends not only on programming but also on effective planning,
+organization, resource allocation, communication, monitoring, and decision making. A soft-
+ware project is normally divided into multiple activities or tasks that may involve different team
+members, deadlines, technical requirements, dependencies, levels of complexity, and business
+priorities. As a project progresses, the importance of individual tasks may change according
+to deadlines, completed dependencies, emerging risks, resource availability, and changes in
+project requirements.
+In a small project, a project manager or development team can often prioritize tasks manually
+by considering experience and immediate requirements. However, manual decision making
+becomes more diﬀicult as the number of tasks increases. A team may have several high-priority
+tasks, but not all of them can necessarily be executed simultaneously. Some tasks may have an
+approaching deadline, while another task may have a high business impact. A third task may
+block several other activities because it is a dependency. Similarly, a developer may already be
+assigned to multiple tasks, making workload an important consideration.
+Traditional project management systems have addressed many aspects of this problem by pro-
+viding centralized task repositories, dashboards, calendars, workflow boards, notifications, and
+reporting mechanisms. These systems improve visibility and coordination. However, the re-
+sponsibility for deciding which task should be executed next may still remain with the project
+manager or individual team members. Consequently, the system may store large amounts of
+project information without transforming that information into a clear and explainable task-level
+recommendation.
+The concept of Agile software development provides an important foundation for addressing
+this challenge. Agile methods emphasize iterative development, continuous feedback, adapta-
+tion, customer value, and frequent delivery. Prioritization is an important part of Agile planning
+because teams must decide which requirements or work items should be addressed first. Re-
+quirements prioritization research has investigated numerous approaches including value-based
+techniques, ranking techniques, pairwise comparison, voting, analytical methods, optimization,
+and machine-learning-based techniques.
+Kanban is another important concept relevant to the proposed system. Kanban provides a vi-
+sual representation of workflow in which work items move through different states. A typical
+software Kanban board may contain stages such as Backlog, To Do, In Progress, Review, and
+Done. Visual workflow makes the current state of work easier to understand and can help teams
+identify bottlenecks. Research on Kanban in software engineering has systematically examined
+its benefits, challenges, practices, and research opportunities. However, a Kanban board primar-
+2
+Engineering Project–I
+CSE–FSD
+ily provides visibility into work status; it does not automatically determine which task should
+receive attention first.
+This distinction is important for the proposed project. The objective is not simply to create
+another Kanban board or another task management application. Instead, the project aims to in-
+vestigate how information already available in a project management system can be transformed
+into an explainable priority recommendation.
+2.2 Task Prioritization in Software Development
+Task prioritization refers to the process of determining the relative order in which tasks should
+be addressed. It is closely related to requirements prioritization but is broader in the context
+of project execution because a task may represent a feature, bug fix, technical activity, testing
+activity, documentation task, infrastructure task, or other project activity.
+Research has demonstrated that prioritization is a complex decision-making activity. Karlsson
+and Ryan proposed a cost-value approach in which requirements are evaluated according to their
+relative value and cost. Karlsson, Wohlin, and Regnell evaluated multiple requirements prior-
+itization methods and highlighted both the usefulness and scalability challenges of structured
+prioritization techniques. Later systematic reviews further demonstrated that requirements pri-
+oritization has developed into a large research area containing numerous techniques and criteria.
+Achimugu et al. conducted a systematic literature review of software requirements prioritiza-
+tion research and identified several commonly used prioritization techniques. Their review also
+highlighted challenges such as scalability, changing requirements, stakeholder coordination, and
+dependency handling. Similarly, Pitangueira et al. investigated requirements selection and pri-
+oritization using Search-Based Software Engineering approaches and observed the importance
+of release planning, optimization, risks, and uncertainties.
+More recent empirical research has focused on the actual evaluation of prioritization techniques.
+Bukhsh, Bukhsh, and Daneva reviewed 102 papers covering requirements prioritization ap-
+proaches and their empirical evaluation. Their work shows that modern prioritization methods
+increasingly employ fuzzy logic, optimization, and machine learning while also highlighting
+scalability and empirical validation as important concerns.
+These findings are relevant to the proposed project because a practical project management
+system should not depend on a single factor such as manually selected priority. Instead, multiple
+project factors should contribute to the recommendation.
+2.3 Importance of Multiple Criteria
+A software task can have different levels of importance depending on project context. Deadline
+urgency is one important factor. A task with a deadline approaching within a short period
+may need immediate attention. However, deadline alone is insuﬀicient. A low-impact task due
+tomorrow may not necessarily be more important than a critical business task due next week.
+3
+Engineering Project–I
+CSE–FSD
+Business impact is therefore another important criterion. A task related to a core project feature,
+customer requirement, security issue, or important deliverable may have greater significance
+than a minor enhancement. Research in value-based requirements prioritization supports the
+use of business or stakeholder value as an important prioritization criterion.
+Dependencies represent another critical dimension. If Task B cannot be completed until Task
+A is completed, then the status of Task A affects the overall project flow. A task that blocks
+several downstream tasks may deserve additional attention even if its individual business value
+is moderate.
+Team workload also influences practical task prioritization. A theoretically important task may
+not be immediately executable if the assigned developer is already overloaded. Conversely,
+assigning additional high-priority tasks to an overloaded team member can create delays and
+bottlenecks.
+Complexity and estimated effort are also relevant. A complex task may require more preparation,
+additional resources, or earlier initiation. A team may therefore need to identify complex tasks
+earlier than simple tasks even when their deadlines are similar.
+The proposed project combines these factors into a unified scoring mechanism. The purpose is
+not to claim that one universal formula is optimal for all software projects. Instead, the formula
+represents a transparent prototype model that can be tested and refined using representative
+project data.
+2.4 Artificial Intelligence in Project Management
+Artificial Intelligence has increasingly been investigated as a technology for supporting project
+management. Research reviews have identified applications of AI in project planning, schedul-
+ing, forecasting, risk management, performance monitoring, decision support, resource alloca-
+tion, and uncertainty management.
+AI can be useful when a project contains large amounts of textual or structured information. For
+example, a task description may contain information about functionality, technical requirements,
+dependencies, risks, or expected effort. An AI-assisted component can analyse this description
+and convert unstructured information into structured suggestions.
+However, the use of AI in project management also introduces challenges. AI-generated recom-
+mendations may not always be transparent, consistent, or appropriate for every project context.
+Data quality, explainability, integration, empirical validation, and human oversight are therefore
+important considerations.
+For this reason, the proposed project separates AI-assisted analysis from the core prioritization
+calculation. The priority score will be produced through a deterministic multi-factor model.
+AI will assist in understanding task descriptions, suggesting subtasks, estimating complexity,
+identifying risks, and providing supporting recommendations.
+4
+Engineering Project–I
+CSE–FSD
+This approach provides two advantages. First, the prioritization process remains explainable
+because each factor contributes a known amount to the final score. Second, the AI component
+remains useful without making the entire system dependent on a black-box prediction.
+2.5 Need for an Integrated System
+Existing research demonstrates strong individual contributions in requirements prioritization,
+task prioritization, Kanban, Agile project management, and AI-enabled project management.
+However, these research areas are often studied separately.
+A software team may therefore have a Kanban board for workflow visualization, a task manage-
+ment tool for assignments, separate reporting dashboards, and manual processes for deciding
+priority. The proposed project explores the integration of these activities into one lightweight
+platform.
+The intended workflow is:
+Task Creation →Task Analysis →Priority Calculation →Explanation →Kanban
+Decision Support
+The system will not automatically force a team to follow every recommendation. Instead, the
+priority score will act as decision support. The project manager or team member will remain
+able to inspect the factors, modify task information, and make the final decision.
+2.6 Research Motivation
+The research motivation arises from four major observations.
+First, task prioritization is a recurring activity in software development and becomes more dif-
+ficult when projects contain numerous tasks and constraints.
+Second, research on requirements and task prioritization has demonstrated the usefulness of
+multi-criteria approaches, but different approaches address different contexts and often have
+scalability or evaluation limitations.
+Third, Kanban provides a strong visual mechanism for workflow management but does not itself
+provide an automatic multi-factor prioritization mechanism.
+Fourth, AI-enabled project management research shows increasing potential for decision sup-
+port, risk analysis, forecasting, and planning, while recent studies continue to identify challenges
+concerning empirical validation, integration, transparency, and practical implementation.
+Therefore, the proposed research investigates a practical combination of these concepts within
+a single academic prototype.
+5
+Engineering Project–I
+CSE–FSD
+2.7 Scope of the Proposed Work
+The proposed system will focus primarily on software project management. The minimum func-
+tional scope will include user authentication, project creation, team management, task manage-
+ment, task assignment, deadlines, dependencies, Kanban workflow, automatic priority calcu-
+lation, priority explanations, AI-assisted task analysis, risk indicators, workload analysis, and
+basic project analytics.
+The proposed prototype will be lightweight and suitable for local development and academic
+demonstration. The system will not depend on heavy enterprise infrastructure. The architecture
+will be modular so that additional capabilities can be introduced in future versions.
+The system will use a modern full-stack web architecture consisting of a React-based frontend,
+Node.js and Express.js backend, and MongoDB database. AI-assisted functionality will be
+designed with an abstraction layer so that a local or external AI provider can be used without
+changing the main project-management logic.
+2.8 Significance of the Project
+The significance of the proposed project lies in transforming project data into actionable decision-
+support information. Instead of simply displaying that a project contains twenty tasks, the sys-
+tem attempts to answer a more useful question: Which task should the team consider first, and
+what factors explain that recommendation?
+The project also provides an opportunity to combine several areas of Computer Science and
+Full Stack Development, including frontend development, backend API development, database
+design, authentication, software engineering, Agile project management, decision-support sys-
+tems, Artificial Intelligence, data analysis, testing, and system integration.
+From an academic perspective, the system provides a clear problem, measurable inputs, deter-
+ministic processing, AI-assisted functionality, and possible evaluation criteria. This makes the
+project suitable for experimental demonstration and future extension.
+2.9 Summary of Introduction
+In summary, modern software projects require continuous prioritization because tasks differ
+in urgency, business value, dependencies, complexity, and resource requirements. Existing re-
+search has provided several approaches to requirements and task prioritization, while Kanban
+provides effective workflow visualization and AI research provides opportunities for intelligent
+project decision support. The proposed project brings these ideas together through an integrated
+project management system.
+The main research focus is therefore the design of an explainable automatic task prioritization
+mechanism supported by a Kanban-based project management interface and an AI-assisted task
+analysis layer. The system is intended to help project teams organize work, identify important
+6
+Engineering Project–I
+CSE–FSD
+tasks, understand priority recommendations, and make more informed project-level decisions.
+7
+Engineering Project–I
+CSE–FSD
+Problem Analysis / Literature Review
+3.1 Problem Identification
+Based on the study of existing research and project management practices, the following prob-
+lems have been identified:
+1. Conventional project management systems primarily provide mechanisms for creating,
+assigning, organizing, and tracking tasks, while the decision of which task should be
+executed first may remain manual.
+2. Kanban boards improve workflow visibility but do not inherently calculate a task pri-
+ority based on multiple project factors.
+3. Manual prioritization becomes diﬀicult when a project contains many tasks with dif-
+ferent deadlines, business impacts, dependencies, complexities, and workloads.
+4. A task that is individually important may not necessarily be the task that should be
+executed first if another task blocks multiple downstream activities.
+5. Developer workload is often considered separately from task priority, even though re-
+source availability can influence practical execution.
+6. Existing requirements prioritization techniques often address requirements selection
+or release planning rather than continuous task-level prioritization during project exe-
+cution.
+7. Research on software task prioritization has historically concentrated heavily on spe-
+cialized categories such as bugs, issues, and pull requests.
+8. AI-enabled project management research demonstrates significant potential but also
+identifies concerns regarding explainability, integration, data quality, validation, and
+human oversight.
+9. There is a need for a lightweight integrated prototype that demonstrates automatic task
+prioritization together with workflow visualization and AI-assisted task analysis.
+3.2 Problem Statement
+In software development projects, teams continuously manage tasks having different deadlines,
+business impacts, dependencies, complexities, estimated efforts, and resource requirements.
+Conventional project management systems provide facilities for task organization and workflow
+visualization, but the process of determining which task should receive attention first frequently
+depends on manual judgement.
+As the number of tasks increases, manual prioritization may become inconsistent, time-consuming,
+and diﬀicult to update. Project managers may need to simultaneously consider deadline urgency,
+business importance, dependencies, team workload, and complexity. A change in any one of
+these factors may affect the relative importance of tasks.
+8
+Engineering Project–I
+CSE–FSD
+Therefore, the problem addressed by this project is:
+How can a project management system automatically analyse multiple task
+and project factors to generate an explainable task-priority recommendation
+while providing AI-assisted support for task understanding, task breakdown,
+risk identification, and project decision making?
+3.3 Literature Review Method
+The literature survey for the proposed project focuses on five closely related research areas:
+1. Software requirements prioritization.
+2. Software task and issue prioritization.
+3. Agile and Kanban-based project management.
+4. Artificial Intelligence in project management.
+5. Project Management Information Systems and AI-assisted decision support.
+Peer-reviewed journal articles, conference papers, systematic literature reviews, and established
+academic publications were considered. The reviewed studies were selected according to their
+relevance to at least one of the core components of the proposed system.
+3.4 Review of Existing Research
+The following table summarizes more than twenty relevant research studies.
+Table 1: Literature Review of Relevant Research Studies
+No.
+Study
+Research Focus
+Major Findings and
+Relevance
+1
+Karlsson and Ryan
+(1997) [?]
+Cost-value approach for
+software requirements
+prioritization.
+Proposed evaluating
+requirements using relative cost
+and value. The study
+demonstrates that prioritization
+can be treated as a structured
+decision problem rather than a
+simple manual label. This
+supports the use of multiple
+measurable factors in the
+proposed system.
+9
+Engineering Project–I
+CSE–FSD
+No.
+Study
+Research Focus
+Major Findings and
+Relevance
+2
+Karlsson, Wohlin
+and Regnell
+(1998) [?]
+Evaluation of six methods
+for prioritizing software
+requirements.
+Compared several prioritization
+methods and investigated their
+usefulness. The study found
+structured methods useful while
+also identifying scalability
+concerns. This motivates a
+lightweight scoring mechanism
+for task-level prioritization.
+3
+Kukreja et al.
+(2013) [?]
+Value-based requirements
+prioritization using
+TOPSIS.
+Demonstrated the use of
+decision-analysis techniques for
+prioritizing requirements, test
+cases, resource allocation, and
+product planning. Supports the
+idea of multi-criteria
+prioritization.
+4
+Achimugu et al.
+(2014) [?]
+Systematic literature
+review of software
+requirements prioritization.
+Reviewed prioritization
+techniques and identified issues
+including scalability, changing
+requirements, stakeholder
+coordination, and dependency
+management.
+Dependency-aware
+prioritization is particularly
+relevant to the proposed system.
+5
+Sher et al. (2014)
+[?]
+Requirements
+prioritization techniques
+and prioritization aspects.
+Classified prioritization aspects
+into technical, business, and
+client-related categories. The
+study highlights the need to
+consider multiple dimensions
+during prioritization.
+10
+Engineering Project–I
+CSE–FSD
+No.
+Study
+Research Focus
+Major Findings and
+Relevance
+6
+Pitangueira et al.
+(2015) [?]
+Search-Based Software
+Engineering for
+requirements selection and
+prioritization.
+Systematically reviewed SBSE
+approaches and identified
+release planning, optimization,
+risk, and uncertainty as
+important considerations.
+Demonstrates the complexity of
+automated prioritization.
+7
+van der Veen,
+Gousios and
+Zaidman (2015)
+[?]
+Automatic prioritization of
+pull requests.
+Presented PRioritizer, a system
+that recommends pull requests
+for attention. The study shows
+that automated ranking can
+support software integration
+workflows, while transparency
+of ranking remains important.
+8
+Ahmad et al.
+(2018) [?]
+Systematic mapping study
+of Kanban in software
+engineering.
+Analysed a large body of
+Kanban literature and identified
+benefits, challenges,
+recommended practices, and
+research opportunities.
+Supports Kanban as the visual
+workflow component of the
+proposed system.
+9
+Jarzębowicz and
+Sitko (2020) [?]
+Industrial survey of Agile
+requirements prioritization.
+Surveyed 69 practitioners and
+found business value to be
+common while complexity,
+stability, and interdependencies
+were also considered. Directly
+supports multi-factor
+prioritization.
+10
+Bukhsh, Bukhsh
+and Daneva (2020)
+[?]
+Systematic review of
+requirements prioritization
+and empirical evaluation.
+Reviewed 102 papers and found
+increasing use of fuzzy logic,
+optimization, and machine
+learning. Also highlighted
+scalability and empirical
+evaluation as important issues.
+11
+Engineering Project–I
+CSE–FSD
+No.
+Study
+Research Focus
+Major Findings and
+Relevance
+11
+Bento et al. (2022)
+[?]
+Systematic literature
+review of AI in project
+management.
+Identified increasing interest in
+AI for project management and
+discussed potential applications
+and limitations. Supports the
+use of AI as a project
+decision-support component.
+12
+Olmedo et al.
+(2022) [?]
+Pull request prioritization
+for improving integration
+eﬀiciency.
+Investigated prioritization of
+pull requests within software
+integration workflows.
+Demonstrates that ordering
+work items can affect
+development-process eﬀiciency.
+13
+Rojas et al. (2022)
+[?]
+OurRank requirements
+prioritization method.
+Combined qualitative
+stakeholder assessment with
+cost-benefit prediction.
+Supports the importance of
+combining quantitative
+information with contextual and
+stakeholder-oriented
+information.
+14
+Taboada et al.
+(2023) [?]
+Systematic review of
+AI-enabled project
+management.
+Analysed AI applications across
+project management
+performance domains and
+identified opportunities for
+planning, forecasting,
+measurement, uncertainty
+management, and decision
+support.
+15
+Bugayenko et al.
+(2023) [?]
+Systematic literature
+review of task
+prioritization in software
+development.
+Found that much
+task-prioritization research
+focuses on bugs, issues, and
+pull requests. The study
+provides direct motivation for
+investigating broader task-level
+prioritization.
+12
+Engineering Project–I
+CSE–FSD
+No.
+Study
+Research Focus
+Major Findings and
+Relevance
+16
+Müller et al.
+(2024) [?]
+Empirical overview of AI
+and project management.
+Analysed the state of AI in
+project management using a
+large international professional
+sample. Identified applications
+including reporting,
+performance monitoring, time
+management, and scheduling.
+17
+Nenni et al. (2025)
+[?]
+Systematic review of AI
+and project management.
+Reviewed 215 papers and
+examined AI applications
+across project management
+processes, particularly project
+risk management and decision
+support. Identified research
+gaps and future opportunities.
+18
+Salimimoghadam
+et al. (2025) [?]
+Systematic review of AI
+opportunities, enablers,
+and barriers in project
+management.
+Highlights AI’s potential for
+decision making, eﬀiciency,
+resource optimization, and
+project management while
+identifying barriers related to
+data, adoption, integration, and
+organizational factors.
+19
+Darby, Lane and
+Lokuge (2025) [?]
+AI in Project Management
+Information Systems.
+Identified growing interest in
+AI-enabled PMIS but noted that
+existing literature can be niche,
+high-level, or speculative and
+lacks comprehensive reference
+models. Supports an integrated
+academic PMIS prototype.
+20
+Rebuglio et al.
+(2025) [?]
+Systematic review of
+Project Management
+Information Systems.
+Reviewed PMIS literature and
+highlighted fragmentation in
+terminology and research
+approaches. Supports the need
+for coherent integration of
+project information and
+decision-support capabilities.
+13
+Engineering Project–I
+CSE–FSD
+No.
+Study
+Research Focus
+Major Findings and
+Relevance
+21
+Raskin, Devroey
+and Vanderose
+(2026) [?]
+Pull request prioritization
+and visualization.
+Introduced PRECOG to help
+developers prioritize pull
+requests using
+multidimensional visualization.
+The study further demonstrates
+the value of presenting
+prioritization information in an
+interpretable visual form.
+3.5 Analysis of the Literature
+The reviewed literature demonstrates that prioritization has been studied from several perspec-
+tives. Early research focused on structured requirements prioritization techniques such as cost-
+value analysis and analytical decision methods. These approaches established the importance
+of comparing multiple attributes rather than relying solely on a single priority label.
+Subsequent research expanded the field through systematic reviews and Search-Based Software
+Engineering. These studies demonstrate that requirements prioritization can involve optimiza-
+tion, stakeholder preferences, risk, uncertainty, dependencies, and resource constraints. How-
+ever, many approaches are designed specifically for requirements selection or release planning.
+Agile research further demonstrates that business value, complexity, dependencies, and other
+contextual factors influence prioritization decisions. This provides strong theoretical support
+for the proposed multi-factor task-priority model.
+Research on task prioritization in software development provides an especially important obser-
+vation. Bug, issue, and pull-request prioritization represent major categories within the existing
+literature. This means that automated ranking is already an established research direction, but
+there remains room for broader task-level project management systems that integrate different
+task attributes and project context.
+Kanban research provides the workflow foundation for the proposed system. A Kanban board
+allows project teams to visually track the current state of work. The proposed system extends
+this idea by associating task priority information with the workflow.
+The AI project management literature demonstrates that Artificial Intelligence can assist with
+planning, forecasting, risk management, monitoring, and decision support. At the same time,
+recent systematic reviews identify challenges related to transparency, empirical validation, inte-
+gration, data quality, and organizational adoption.
+Therefore, the proposed project does not claim to introduce an entirely new theory of prioriti-
+zation. Instead, it aims to provide an integrated, explainable, lightweight academic system that
+14
+Engineering Project–I
+CSE–FSD
+combines established ideas into a practical task-level project management workflow.
+3.6 Identified Research and Technical Gap
+The literature reveals the following technical gap:
+1. Existing requirements prioritization methods frequently focus on requirements selec-
+tion or release planning.
+2. Existing software task prioritization research often concentrates on specialized cate-
+gories such as bugs, issues, and pull requests.
+3. Kanban systems provide workflow visualization but do not inherently provide multi-
+factor automatic task prioritization.
+4. AI project management research demonstrates strong potential but identifies challenges
+related to transparency, integration, validation, and practical implementation.
+5. Project Management Information System research indicates fragmentation and a need
+for more coherent integration.
+The proposed system addresses this gap through the following conceptual pipeline:
+Task and
+Project Data
+Multi-Factor
+Analysis
+Automatic
+Priority Score
+Explainable
+Recommendation
+Kanban Deci-
+sion Support
+3.7 Proposed Research Position
+The proposed project positions itself as an integrated decision-support prototype rather than a
+replacement for professional project managers. The system will calculate and display a priority
+recommendation, but the final decision will remain under human control.
+The proposed approach also avoids claiming that Artificial Intelligence alone should determine
+task priority. Instead, deterministic project information will produce the main priority score,
+while AI will assist in interpreting task descriptions and generating additional suggestions.
+15
+Engineering Project–I
+CSE–FSD
+This distinction is important because it improves explainability and makes the proposed system
+easier to evaluate using controlled project scenarios.
+16
+Engineering Project–I
+CSE–FSD
+Proposed Methodology
+4.1 Methodology Overview
+The proposed system will follow an iterative Agile software development methodology. De-
+velopment will be performed incrementally, beginning with requirements analysis and system
+design, followed by core project management features, Kanban workflow, automatic prioritiza-
+tion, AI-assisted analysis, risk and workload analysis, and final evaluation.
+The methodology is designed so that the core application remains functional even if the AI-
+assisted component is unavailable. This ensures that the project does not become completely
+dependent on an external AI service.
+The major stages are:
+1. Requirement analysis and literature study.
+2. System architecture and database design.
+3. User authentication and role management.
+4. Project and team management.
+5. Task management.
+6. Kanban workflow development.
+7. Automatic task prioritization.
+8. AI-assisted task analysis.
+9. Risk and workload analysis.
+10. Project analytics.
+11. Testing and evaluation.
+12. Documentation and demonstration.
+4.2 Proposed System Architecture
+The proposed application will use a modular client-server architecture.
+17
+Engineering Project–I
+CSE–FSD
+React.js Frontend
+Dashboard + Kan-
+ban + Task Interface
+Node.js + Express.js
+REST API and Business Logic
+MongoDB
+Project Database
+Priority Engine
+Scoring + Ex-
+planation
+AI Analysis Layer
+Task Intelligence
+Figure 1: Proposed System Architecture
+4.3 User and Project Management
+The system will support role-based project management.
+The major user roles will include:
+• Project Manager: Creates projects, manages team members, creates tasks, monitors
+project progress, and reviews priority recommendations.
+• Developer / Team Member: Views assigned tasks, updates task status, adds task in-
+formation, and works according to project workflow.
+• Viewer: Can view project information and progress without modifying project data.
+Authentication will use secure password hashing and token-based authentication. Role-based
+access control will be used to restrict unauthorized operations.
+4.4 Task Management
+Each task will contain structured information required for prioritization.
+The proposed task attributes include:
+• Task title.
+• Task description.
+• Project.
+• Assigned team member.
+• Deadline.
+• Current status.
+• Business impact.
+• Complexity.
+• Estimated effort.
+18
+Engineering Project–I
+CSE–FSD
+• Dependencies.
+• Priority score.
+• Priority category.
+• Risk level.
+The structured representation of tasks will allow the priority engine to analyse project conditions
+consistently.
+4.5 Kanban Workflow
+The primary visual workflow will be implemented using a Kanban board.
+The proposed stages are:
+Backlog →To Do →In Progress →In Review →Done
+Users will be able to move tasks between workflow stages. Each task card will display important
+information such as task title, priority, score, assignee, deadline, complexity, and risk level.
+The purpose of the Kanban board is not only to show task status but also to provide a visual
+interface through which priority recommendations can be interpreted in the context of current
+project work.
+4.6 Automatic Task Prioritization Engine
+The central technical component of the proposed system is the Automatic Task Prioritization
+Engine.
+The initial priority score will be calculated using:
+P = 0.30U + 0.25I + 0.20D + 0.15W + 0.10C
+(1)
+where:
+• P = Final Priority Score.
+• U = Deadline Urgency Score.
+• I = Business Impact Score.
+• D = Dependency Impact Score.
+• W = Workload Factor.
+• C = Complexity Score.
+All factors will be normalized to a scale of 0–100.
+The weights represent the initial design of the proposed academic prototype. They are not
+claimed to be universally optimal. Their purpose is to provide a transparent and measurable
+baseline that can be evaluated during testing.
+19
+Engineering Project–I
+CSE–FSD
+4.7 Deadline Urgency
+Deadline urgency will represent how close a task is to its deadline.
+A simplified conceptual mapping can be:
+• Very distant deadline – low urgency.
+• Approaching deadline – moderate urgency.
+• Near deadline – high urgency.
+• Overdue deadline – critical urgency.
+The actual implementation will calculate urgency using task deadline and current date/time.
+4.8 Business Impact
+Business impact will represent the importance of the task to the project.
+The proposed mapping is:
+Business Impact
+Score
+Low
+25
+Medium
+50
+High
+75
+Critical
+100
+This information may be entered by the project manager or suggested through AI-assisted anal-
+ysis.
+4.9 Dependency Impact
+Dependency impact will measure how strongly a task influences other tasks.
+For example, a task that blocks multiple downstream tasks can receive a higher dependency
+score. A task without important dependencies may receive a lower score.
+The proposed dependency analysis may consider:
+• Number of dependent tasks.
+• Whether dependent tasks are critical.
+• Whether the task is blocking progress.
+• Whether the dependency affects a deadline.
+4.10 Workload Factor
+Workload will represent the current workload of the assigned team member.
+The system may consider:
+20
+Engineering Project–I
+CSE–FSD
+• Number of active tasks.
+• Estimated effort of active tasks.
+• Completed tasks.
+• Overdue tasks.
+• Current workload percentage.
+This factor will help the system consider resource availability rather than treating every task as
+independent of team capacity.
+4.11 Complexity
+Task complexity will represent the expected technical diﬀiculty of completing the task.
+The initial mapping may be:
+Complexity
+Score
+Low
+30
+Medium
+60
+High
+90
+Complexity may be manually specified or suggested through AI-assisted analysis.
+4.12 Priority Classification
+The final score will be classified into four categories:
+Score Range
+Priority
+0–30
+Low
+31–60
+Medium
+61–80
+High
+81–100
+Critical
+The system will display both the category and numerical score.
+4.13 Explainable Prioritization
+A major design objective is explainability.
+For example, instead of displaying only:
+Priority: Critical
+the system may provide:
+21
+Engineering Project–I
+CSE–FSD
+Priority Score: 86
+High deadline urgency, critical business impact, and two dependent tasks are con-
+tributing strongly to the priority.
+This explanation will help users understand how the recommendation was generated.
+4.14 AI-Assisted Task Analysis
+The AI-assisted layer will analyse task descriptions and available project context.
+It may generate:
+• Suggested complexity.
+• Estimated effort.
+• Required technical skills.
+• Possible risks.
+• Suggested dependencies.
+• Suggested subtasks.
+• Natural-language task explanation.
+The AI layer will not directly replace the deterministic priority formula.
+4.15 AI-Assisted Task Breakdown
+For example, a task such as:
+“Develop a student management module.”
+may be analysed into:
+1. Design the student database schema.
+2. Develop student management APIs.
+3. Create student registration interface.
+4. Implement input validation.
+5. Develop student listing and search.
+6. Implement update and deletion operations.
+7. Perform module testing.
+The generated subtasks will remain under user control. The user will be able to accept, edit, or
+reject suggestions.
+4.16 Risk Detection
+The proposed risk module will use rule-based analysis.
+22
+Engineering Project–I
+CSE–FSD
+Potential risk conditions include:
+• Overdue task.
+• Deadline approaching.
+• High task complexity.
+• High estimated effort.
+• Multiple dependencies.
+• Blocked task.
+• High team workload.
+Risks may be classified as:
+Low →Medium →High →Critical
+4.17 Workload Analysis
+The workload module will provide a project manager with a summarized view of team capacity.
+The dashboard may display:
+• Active tasks per member.
+• Estimated hours.
+• Completed tasks.
+• Overdue tasks.
+• Workload percentage.
+• High-priority tasks assigned to each member.
+This information can also contribute to the workload factor used by the prioritization engine.
+4.18 Project Analytics
+The analytics dashboard will provide project-level information such as:
+• Total tasks.
+• Completed tasks.
+• Tasks by status.
+• Tasks by priority.
+• Overdue tasks.
+• Critical tasks.
+• Team workload.
+• Project completion percentage.
+Charts and summary cards will be used to present information in an easily understandable for-
+mat.
+23
+Engineering Project–I
+CSE–FSD
+4.19 Database Methodology
+MongoDB will be used as the primary database.
+The major collections will include:
+Collection
+Purpose
+Users
+User accounts, roles, profiles, and authentication information.
+Projects
+Project details, owners, members, deadlines, and status.
+Tasks
+Task information, assignment, deadlines, dependencies, priority,
+and progress.
+AIAnalysis
+AI-generated task analysis, suggestions, risks, and subtasks.
+Activities
+Project and task activity history.
+4.20 Technology Stack
+The proposed technology stack is:
+• Frontend: React.js with Vite.
+• Styling: Tailwind CSS.
+• Backend: Node.js and Express.js.
+• Database: MongoDB with Mongoose.
+• Authentication: JWT and secure password hashing.
+• API Communication: REST APIs.
+• Testing: Postman and functional testing.
+• Version Control: Git.
+• Development Environment: Visual Studio Code or equivalent IDE.
+The proposed application is designed to run from its own local project environment and does
+not require heavy enterprise infrastructure for the academic demonstration.
+24
+Engineering Project–I
+CSE–FSD
+4.21 Development Phases
+Phase
+Activities
+Phase 1
+Literature survey, requirement analysis, and problem identification.
+Phase 2
+System architecture, database design, and UI planning.
+Phase 3
+Authentication, roles, users, and project management.
+Phase 4
+Task management and Kanban workflow.
+Phase 5
+Automatic task prioritization engine.
+Phase 6
+Risk detection and workload analysis.
+Phase 7
+AI-assisted task analysis and task breakdown.
+Phase 8
+Analytics dashboard and system integration.
+Phase 9
+Testing, debugging, and performance improvement.
+Phase 10
+Final evaluation, documentation, presentation, and demonstration.
+4.22 Testing and Evaluation Methodology
+The proposed system will be evaluated using multiple testing levels.
+Functional Testing
+Core functions including authentication, project creation, task creation, task assignment, task
+update, Kanban movement, priority calculation, risk detection, and analytics will be tested.
+API Testing
+REST APIs will be tested using Postman and appropriate test cases.
+Integration Testing
+The integration among frontend, backend, database, priority engine, and AI-assisted analysis
+layer will be tested.
+Usability Testing
+Representative users will perform common project-management operations to evaluate the un-
+derstandability and usability of the interface.
+Prioritization Evaluation
+Representative project tasks will be created with different deadlines, business impacts, depen-
+dencies, workloads, and complexity levels.
+The proposed evaluation may compare:
+1. Manual prioritization.
+2. Deterministic multi-factor prioritization.
+25
+Engineering Project–I
+CSE–FSD
+3. AI-assisted task analysis combined with the prioritization engine.
+Possible evaluation parameters include:
+• Time required to prioritize a group of tasks.
+• Consistency of priority ordering.
+• Agreement with manual or expert ordering.
+• Number of high-risk tasks identified.
+• Number of overdue or critical tasks correctly highlighted.
+• User understanding of priority explanations.
+No numerical performance result will be assumed in advance. Final results will be obtained
+from actual experimentation.
+4.23 Expected Methodological Outcome
+The methodology is expected to produce a functional project management prototype capable
+of:
+• Managing projects and teams.
+• Managing tasks and dependencies.
+• Visualizing workflow through Kanban.
+• Automatically calculating task priority.
+• Explaining priority decisions.
+• Assisting users with task analysis.
+• Breaking complex tasks into smaller activities.
+• Identifying potential project risks.
+• Analysing team workload.
+• Providing project analytics.
+26
+Engineering Project–I
+CSE–FSD
+Objectives
+5.1 Main Objective
+The main objective of this research work is to design and develop an intelligent web-based
+project management system that integrates Kanban-based workflow management with an ex-
+plainable automatic task prioritization mechanism and AI-assisted task analysis.
+5.2 Specific Objectives
+The specific objectives of the proposed project are:
+1. To study existing research related to Agile project management, Kanban, software task
+prioritization, requirements prioritization, and Artificial Intelligence in project man-
+agement.
+2. To analyse the limitations of manual and single-factor task prioritization approaches.
+3. To design a web-based project management platform for managing projects, teams, and
+tasks.
+4. To implement a Kanban-based workflow for visual project management.
+5. To develop an automatic task prioritization engine based on multiple project factors.
+6. To incorporate deadline urgency into the task-priority calculation.
+7. To incorporate business impact into the task-priority calculation.
+8. To consider task dependencies while determining priority.
+9. To consider team workload as a factor in task prioritization.
+10. To consider task complexity and estimated effort.
+11. To generate a measurable priority score for each task.
+12. To classify tasks into Low, Medium, High, and Critical priority categories.
+13. To provide human-readable explanations for automatically generated priority recom-
+mendations.
+14. To implement AI-assisted task description analysis.
+15. To provide AI-assisted task breakdown into smaller actionable subtasks.
+16. To provide suggestions for complexity, effort, technical skills, dependencies, and po-
+tential risks.
+17. To implement rule-based risk detection using deadline, workload, complexity, and de-
+pendency information.
+18. To provide team workload analysis and project-level analytics.
+19. To evaluate the proposed prioritization mechanism using representative project scenar-
+ios.
+20. To compare manual prioritization with the proposed multi-factor prioritization mecha-
+27
+Engineering Project–I
+CSE–FSD
+nism.
+21. To develop a lightweight, maintainable, and academically demonstrable prototype.
+22. To maintain human control over final project-management decisions rather than auto-
+matically enforcing AI recommendations.
+5.3 Expected Research Contribution
+The expected contribution of the project is an integrated academic prototype that combines:
+Project Management
++
+Kanban Workflow
++
+Automatic Task Prioritization
++
+AI-Assisted Analysis
+The project will particularly demonstrate how structured project information can be converted
+into explainable task-level decision support.
+28
+Engineering Project–I
+CSE–FSD
+References
+[1] J. Karlsson and K. Ryan, “A Cost-Value Approach for Prioritizing Requirements,” IEEE
+Software, vol. 14, no. 5, pp. 67–74, 1997, doi: 10.1109/52.605933.
+[2] J. Karlsson, C. Wohlin, and B. Regnell, “An Evaluation of Methods for Prioritizing Soft-
+ware Requirements,” Information and Software Technology, vol. 39, nos. 14–15, pp. 939–
+947, 1998, doi: 10.1016/S0950-5849(97)00053-0.
+[3] N. Kukreja, S. S. Payyavula, B. Boehm, and S. Padmanabhuni, “Value-Based Require-
+ments Prioritization: Usage Experiences,” Procedia Computer Science, vol. 16, pp. 806–
+813, 2013, doi: 10.1016/j.procs.2013.01.084.
+[4] P. Achimugu, A. Selamat, R. Ibrahim, and M. N. Mahrin, “A Systematic Literature Review
+of Software Requirements Prioritization Research,” Information and Software Technology,
+vol. 56, no. 6, pp. 568–585, 2014, doi: 10.1016/j.infsof.2014.02.001.
+[5] F. Sher, D. N. A. Jawawi, R. Mohamad, and M. I. Babar, “Requirements Prioritization
+Techniques and Different Aspects for Prioritization: A Systematic Literature Review Pro-
+tocol,” in Proc. 8th Malaysian Software Engineering Conference (MySEC), 2014, doi:
+10.1109/MySec.2014.6985985.
+[6] A. M. Pitangueira, R. S. R. Barros, M. D. G. Mendonça, and others, “Software Require-
+ments Selection and Prioritization Using SBSE Approaches: A Systematic Review and
+Mapping of the Literature,” Journal of Systems and Software, vol. 103, pp. 267–280,
+2015, doi: 10.1016/j.jss.2014.09.038.
+[7] E. van der Veen, G. Gousios, and A. Zaidman, “Automatically Prioritizing Pull Requests,”
+in Proc. IEEE/ACM 12th Working Conference on Mining Software Repositories (MSR),
+2015, doi: 10.1109/MSR.2015.40.
+[8] M. O. Ahmad, D. Dennehy, K. Conboy, and M. Oivo, “Kanban in Software Engineering:
+A Systematic Mapping Study,” Journal of Systems and Software, vol. 137, pp. 96–113,
+2018, doi: 10.1016/j.jss.2017.11.045.
+[9] A. Jarzębowicz and N. Sitko, “Agile Requirements Prioritization in Practice: Results of
+an Industrial Survey,” Procedia Computer Science, vol. 176, pp. 3446–3455, 2020, doi:
+10.1016/j.procs.2020.09.052.
+[10] F. A. Bukhsh, Z. A. Bukhsh, and M. Daneva, “A Systematic Literature Review on Require-
+ment Prioritization Techniques and Their Empirical Evaluation,” Computer Standards &
+Interfaces, vol. 69, Art. 103389, 2020, doi: 10.1016/j.csi.2019.103389.
+[11] S. Bento, L. Pereira, R. Gonçalves, Á. Dias, and R. L. da Costa, “Artificial Intelligence in
+Project Management: Systematic Literature Review,” International Journal of Technology
+Intelligence and Planning, vol. 13, no. 2, pp. 143–163, 2022, doi: 10.1504/IJTIP.2022.126841.
+[12] A. Olmedo, G. Arévalo, I. J. Cassol, C. Urtado, and S. Vauttier, “Improving Integration
+Process Eﬀiciency through Pull Request Prioritization,” in Proc. 17th International Con-
+ference on Evaluation of Novel Approaches to Software Engineering (ENASE), vol. 1, pp.
+29
+Engineering Project–I
+CSE–FSD
+62–72, 2022, doi: 10.5220/0010992100003176.
+[13] L. Rojas, C. Olivares-Rodriguez, C. Alvarez, and P. G. Campos, “OurRank: A Software
+Requirements Prioritization Method Based on Qualitative Assessment and Cost-Benefit
+Prediction,” IEEE Access, vol. 10, pp. 131772–131787, 2022, doi: 10.1109/ACCESS.2022.3230152.
+[14] I. Taboada, A. Daneshpajouh, N. Toledo, and T. de Vass, “Artificial Intelligence Enabled
+Project Management: A Systematic Literature Review,” Applied Sciences, vol. 13, no. 8,
+Art. 5014, 2023, doi: 10.3390/app13085014.
+[15] Y. Bugayenko, A. Bakare, A. Cheverda, M. Farina, A. Kruglov, Y. Plaksin, W. Pedrycz, and
+G. Succi, “Prioritizing Tasks in Software Development: A Systematic Literature Review,”
+PLOS ONE, vol. 18, no. 4, Art. e0283838, 2023, doi: 10.1371/journal.pone.0283838.
+[16] R. Müller, G. Locatelli, V. Holzmann, M. Nilsson, and T. Sagay, “Artificial Intelligence
+and Project Management: Empirical Overview, State of the Art, and Guidelines for Future
+Research,” Project Management Journal, vol. 55, no. 1, pp. 9–15, 2024, doi: 10.1177/8756972823122519
+[17] M. E. Nenni, F. De Felice, C. De Luca, and A. Forcina, “How Artificial Intelligence Will
+Transform Project Management in the Age of Digitization: A Systematic Literature Re-
+view,” Management Review Quarterly, vol. 75, pp. 1669–1716, 2025, doi: 10.1007/s11301-
+024-00418-z.
+[18] S. Salimimoghadam, A. Ghanbaripour, R. Jahan Tumpa, A. Kamel Rahimi, M. Golmoradi,
+S. Rashidian, and M. Skitmore, “The Rise of Artificial Intelligence in Project Management:
+A Systematic Literature Review of Current Opportunities, Enablers, and Barriers,” Build-
+ings, vol. 15, no. 7, Art. 1130, 2025, doi: 10.3390/buildings15071130.
+[19] R. Darby, M. Lane, and S. Lokuge, “Artificial Intelligence in Project Management Infor-
+mation Systems: A Systematic Literature Review and Future Research Agenda,” in ACIS
+2025 Proceedings, Paper 131, 2025.
+[20] M. Rebuglio, G. Zenezini, F. M. Ottaviani, and A. De Marco, “Project Management In-
+formation Systems: A Systematic Review,” Procedia Computer Science, vol. 256, pp.
+1739–1747, 2025, doi: 10.1016/j.procs.2025.02.313.
+[21] H. Raskin, X. Devroey, and B. Vanderose, “PRECOG: Pull Request Prioritization and
+Visualization,” in Proc. 2026 IEEE International Conference on Software Analysis, Evo-
+lution and Reengineering (SANER), 2026, doi: 10.1109/SANER67736.2026.00122.
+30

@@ -1,0 +1,100 @@
+	The project report should be submitted in A4 size. Number of copies to be submitted: Two (One for department, One for Internal Guide). The certificate should consist of names and roll numbers of all batch members for the above two copies.
+One copy for each batch member. The certificate should consist of batch member name and his/her roll number.
+Paper, Typing, Format:
+	Bond paper (A4 size) should be used for the preparation of the project report.
+Typing should be done on one side of the paper with character font in size 12
+of Times New Roman.
+	The layout should provide a margin of 4 cm on the left, 3 cm on the top and bottom and 2 cm on the right.
+i.e. Left margin space 4 cm
+top and bottom margin space 3 cm
+Right margin space 2 cm
+	Fresh paragraph should commence after five spaces. Double-spacing or One and half line spacing shall be provided throughout the report.
+	The page numbers should be indicated at the bottom-middle of the each page.
+	Should not underline the heading/subheadings and should not put colons ( : )
+in headings or subheadings
+Binding
+	The project shall be properly bound, using Rexene of Black color for CSE/AIML/CSCQ/DS/FSD/CTIS reports (Only for Final Year Projects, Hard Binding is required. For projects of other years, Spiral Binding is sufficient.). The bound front cover should indicate in suitable embossed letter the following:
+(See the sample format of front bound cover)
+	Two blank papers should be provided, each at the beginning and at the end.
+	The bound side must indicate B. Tech (CSE), name of the candidate and year.
+Third Page
+	The third page should be the TITLE page & contain the following
+(See the sample format behind)
+Fourth Page
+Seventh Page
+	The seventh page should contain an abstract of the Project report. The candidate may emphasize here his /her contributions. It should be one page abstract which may include: the purpose and scope of your project, the methodology used, advantages and limitations of your project, conclusions and recommendations etc.
+Eight and Ninth Page
+	In this page, a table of contents, list of tables, list of figures, and photographs and notation must be provided.
+Important Note:
+	All the above pages are to be numbered in Roman numerals of lower case. Ex.
+i,ii,iii,iv,…
+	The document pages must be numbered using numbers i.e. 1,2,3……
+	For IT students use Information Technology in place of Computer Science
+Engineering.
+	All text should be in Times New Roman Font Size – 12 pt. except
+Headings of chapters, sections and sub-sections. Arrangement of Chapters
+	DFDs in case of Database projects
+	UML diagrams. This UML diagrams must include the following
+Class Diagrams
+Interaction diagrams-Sequence and Collaboration diagrams
+Object Diagrams
+Usecase diagrams
+	Control Flow diagrams
+	Database Design
+Output Screens
+Should include all user interfaces and output screens.
+9.   Conclusions
+10. Future Work/ Further Enhancements/Recommendations
+11. References/Bibliography
+12. Appendices (if any).
+Arrangement of Sections in a Chapter:
+	Each section should begin with a heading leaving 12pt. space before and 6pt. space after the heading
+	Section Heading – Times New Roman –Font Size – 14 pt. (Bold)
+	Sub-section Heading – Times New Roman –Font Size – 12 pt. (Bold)
+	Each section in a chapter should be properly numbered for example, 2.1, 2.2 etc., where first digit represents the Chapter Number and second digit the section number. There is no need to indicate the number for the first paragraph in a chapter.
+	Sub-sections, if any indicated as 1.1.1, 1.1.2 etc. i.e. first digit representing the chapter, the second representing the section and third representing the sub- section.
+	Don’t underline the headings or subheadings or side heading. Instead use the bold letters.
+Photographs/Figures and Tables
+	The figures, photographs and tables occurring in a chapter may be serially numbered as Fig. 1.1, 1.2 etc., where the first digit represents the chapter, the second digit represents Figure number.
+Graphs
+	The graph should clearly indicate the points, which are used for drawing the curve or curves.
+Bibliography or References:
+	The following format may be used for writing the Bibliography/References. Author Name, Title of the book or paper, Publisher name, year.
+Eg:
+Berry, Jason, Jonathan Foose, and Tad Jones. Up from the Cradle of Jazz: New
+Orleans Music Since World War II. Athens: U of Georgia P, 1986.
+(An article in a journal)
+Booth, Wayne C. "Kenneth Burke's Way of Knowing." Critical Inquiry 1 (1974): 1-
+22. Winks, Robin W. "The Sinister Oriental Thriller: Fiction and the Asian Scene." Journal of Popular Culture 19.2 (1985): 49-61.
+	The bibliography list should be made strictly in alphabetical order of the name of the authors.
+Note: Submission of a group soft copy of project report is mandatory. File name should be project title.YOUR PROJECT TITLE
+Project report submitted in partial fulfillment of the requirement for the award of the Degree of B. Tech
+Your Name
+Your Roll number
+Your Name
+Your Roll number
+INCLUDEPICTURE "https://www.eduopinions.com/wp-content/uploads/2018/01/Quantum-University-logo.jpg" \* MERGEFORMATINET
+Department of Computer Science and Engineering Quantum School of Technology
+Quantum University, Roorkee
+2026
+CERTIFICATE
+This is to certify that the project report entitled “YOUR PROJECT TITLE” being submitted by Mr/Ms Your Name in partial fulfillment for the award of the Degree of Bachelor of Technology in Computer Science and Engineering /  Computer Science and Engineering with specialization in Cyber Security / Computer Science and Engineering  with specialization in Artificial Intelligence & Machine Learning from Computer Science & Engineering department is a record of bonafide work carried out by him/her under my guidance and supervision.
+(Name & Signature)			(Name & Signature)
+Project Guide			Program Officer, CSE
+(Name & Signature)
+HoD, CSE & Dean Academics, QU
+DECLARATION
+I hereby declare that the project entitled “  _______________________________
+” submitted for the B. Tech Degree in Computer Science and Engineering /  Computer Science and Engineering with specialization in Cyber Security / Computer Science and Engineering  with specialization in Artificial Intelligence & Machine Learning is my original work and the project has not formed the basis or submitted for the award of any degree, diploma, or any other similar titles in any other college / institute / university.
+Name:
+Signature:
+Place:
+Date:
+Table of Content
+Certificate of the SupervisoriDeclarationiiAcknowledgementsiiiTable of ContentsivList of tablesvList of figuresviList of abbreviationsviiAbstractviiiCHAPTER 1:INTRODUCTION11.1Topic 141.2Topic 2
+Subtopic6
+7CHAPTER 2:LITERATURE SURVEY10CHAPTER 3:METHODOLOGY15CHAPTER 4:20CHAPTER 5:RESULTS AND DISCUSSIONS25CHAPTER 6:CONCLUSION30CHAPTER 7:FUTURE WORK32
+References33List of Publications36
+List of Tables
+Table No.TitlePage No.1.1Table description (caption)2.1Table description (caption)2.2Table description (caption)3.1Table description (caption)4.1Table description (caption)5.1Table description (caption)List of Figures
+Figure No.TitlePage No.1.1Figure description (caption)2.1Figure description (caption)2.2Figure description (caption)3.1Figure description (caption)4.1Figure description (caption)5.1Figure description (caption)
