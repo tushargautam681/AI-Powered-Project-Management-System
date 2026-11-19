@@ -2,6 +2,13 @@
 
 **AI-Powered Project Management System with Automatic Task Prioritization**
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Vercel-black?style=for-the-badge&logo=vercel)](https://project-management-ai-one.vercel.app)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-blue?style=for-the-badge&logo=github)](https://github.com/tushargautam681/AI-Powered-Project-Management-System)
+[![Tests Passing](https://img.shields.io/badge/Tests-32%2F32%20Passing-success?style=for-the-badge)](https://github.com/tushargautam681/AI-Powered-Project-Management-System)
+
+> 🔗 **Live Demo URL:** [https://project-management-ai-one.vercel.app](https://project-management-ai-one.vercel.app)  
+> 📂 **GitHub Repository:** [https://github.com/tushargautam681/AI-Powered-Project-Management-System](https://github.com/tushargautam681/AI-Powered-Project-Management-System)
+
 A full-stack web application that answers: **"What should the team work on next, and why?"**
 
 Built as a B.Tech 7th Semester / Final-Year Engineering Project demonstrating full-stack development, algorithmic prioritization, AI-assisted task analysis, risk detection, and Kanban project management.
